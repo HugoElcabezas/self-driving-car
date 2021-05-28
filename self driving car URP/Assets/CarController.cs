@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(NNet))]
 public class CarController : MonoBehaviour
 {
     private Vector3 start_position, start_rotation;
+    private NNet network;
 
     [Range(-1f, 1f)]
     public float acceleration, turning;
@@ -17,6 +19,11 @@ public class CarController : MonoBehaviour
     public float average_speed_multiplier = 0.2f;
     public float sensor_multiplier = 0.1f;
 
+    // Network options
+    public int LAYERS = 1;
+    public int NEURONS = 10;
+
+
     private Vector3 last_position;
     private float total_distance_travelled;
     private float average_speed;
@@ -25,14 +32,23 @@ public class CarController : MonoBehaviour
 
     private void Awake() {
         start_position = transform.position;
-        start_rotation = transform.eulerAngles; 
+        start_rotation = transform.eulerAngles;
+        network = GetComponent<NNet>();
+
+        // TEST CODE
+        network.Initialize(LAYERS, NEURONS);
     }
 
     private void Reset() {
+        // TEST CODE
+        network.Initialize(LAYERS, NEURONS);
+
         time_since_start = 0f;
         total_distance_travelled = 0f;
         average_speed = 0f;
         last_position = start_position;
+        overall_fitness = 0f;
+        transform.position = start_position;
         transform.eulerAngles = start_rotation;
     }
     private void OnColissionEnter(Collision collission)
@@ -46,6 +62,7 @@ public class CarController : MonoBehaviour
         last_position = transform.position;
 
         // Neuronal Network code here to implement
+        (acceleration, turning) = network.RunNetwork(left_sensor, straight_sensor, right_sensor);
 
         MoveCar(acceleration, turning);
 
