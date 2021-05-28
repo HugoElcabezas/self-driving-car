@@ -756,13 +756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cc527674a2f654481e6f532299ca1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0
-  turning: 0
-  time_since_start: 0
-  overall_fitness: 0
-  distance_multiplier: 1.4
-  average_speed_multiplier: 0.2
-  sensor_multiplier: 0.1
+  a: 0
+  t: 0
+  timeSinceStart: 0
+  overallFitness: 0
+  distanceMultipler: 1.4
+  avgSpeedMultiplier: 0.2
+  sensorMultiplier: 0.1
   LAYERS: 1
   NEURONS: 10
 --- !u!4 &958656934 stripped
@@ -1342,7 +1342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4695666576574665310}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.21023178, y: -0.96, z: -0.40864134}
+  m_LocalPosition: {x: -0.21023178, y: -0.62, z: -0.40864134}
   m_LocalScale: {x: 1.6348124, y: 1.6883897, z: 1}
   m_Children: []
   m_Father: {fileID: 156248315}
